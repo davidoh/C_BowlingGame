@@ -1,4 +1,4 @@
-#include "bowling_game.h"
+#include "../src/bowling_game.h"
 #include <assert.h>
 #include <stdbool.h>
 
