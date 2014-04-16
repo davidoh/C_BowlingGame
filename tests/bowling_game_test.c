@@ -36,12 +36,23 @@ static void test_multiple_spares() {
   bowling_game_roll(3);
   bowling_game_roll(7); //second frame = 18
   bowling_game_roll(8);
-  roll_many(17, 0);
+  roll_many(15, 0);
   assert( bowling_game_score() == 39);
+}
+
+static void test_one_strike() {
+  bowling_game_init();
+  bowling_game_roll(10); //first frame = 19
+  bowling_game_roll(2);
+  bowling_game_roll(7);
+  roll_many(17, 0);
+  assert( bowling_game_score() == 28);
 }
 
 int main() {
   test_gutter_game();
   test_all_ones();
   test_one_spare();
+  test_multiple_spares();
+  //test_one_strike();
 }

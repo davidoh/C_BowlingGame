@@ -1,4 +1,5 @@
 #include "bowling_game.h"
+#include <stdbool.h>
 
 enum { max_rolls = 21, max_frames = 10 };
 static int rolls[max_rolls];
@@ -13,19 +14,26 @@ void bowling_game_init() {
 
 void bowling_game_roll(int pins) {
   rolls[current_roll++] = pins;
+  if(pins == 10) {
+    current_roll++;
+  }
+}
+
+static bool is_spare(int frame_index) {
+  return rolls[frame_index] + rolls[frame_index+1] == 10;
 }
 
 int bowling_game_score() {
   int score = 0;
-  int i = 0;
+  int frame_index = 0;
   for(int frame=0; frame < max_frames; frame++) {
-    int frame_score = rolls[i] + rolls[i+1];
+    int frame_score = rolls[frame_index] + rolls[frame_index+1];
     score += frame_score;
-    if(frame_score == 10) {
-      int next_roll = rolls[i+2];
+    if( is_spare(frame_index) ) {
+      int next_roll = rolls[frame_index+2];
       score += next_roll;
     }
-    i += 2;
+    frame_index += 2;
   }
   return score;
 }
