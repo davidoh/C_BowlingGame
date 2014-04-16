@@ -29,6 +29,17 @@ static void test_one_spare() {
   assert( bowling_game_score() == 16);
 }
 
+static void test_multiple_spares() {
+  bowling_game_init();
+  bowling_game_roll(5);
+  bowling_game_roll(5); //first frame = 13
+  bowling_game_roll(3);
+  bowling_game_roll(7); //second frame = 18
+  bowling_game_roll(8);
+  roll_many(17, 0);
+  assert( bowling_game_score() == 39);
+}
+
 int main() {
   test_gutter_game();
   test_all_ones();
