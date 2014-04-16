@@ -54,5 +54,5 @@ int main() {
   test_all_ones();
   test_one_spare();
   test_multiple_spares();
-  //test_one_strike();
+  test_one_strike();
 }
