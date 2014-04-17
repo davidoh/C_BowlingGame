@@ -27,17 +27,30 @@ static bool is_strike(int frame_index) {
   return rolls[frame_index] == 10;
 }
 
+static int strike_score(int frame_index) {
+  return 10 + rolls[frame_index+2] + rolls[frame_index + 3];
+}
+
+static int spare_score(int frame_index) {
+  return 10 + rolls[frame_index + 2];
+}
+
+static int frame_score(int frame_index) {
+  return rolls[frame_index] + rolls[frame_index+1];
+}
+
 int bowling_game_score() {
   int score = 0;
   int frame_index = 0;
   for(int frame=0; frame < max_frames; frame++) {
-    int frame_score = rolls[frame_index] + rolls[frame_index+1];
-    score += frame_score;
     if( is_strike(frame_index) ) {
-      score += rolls[frame_index+2] + rolls[frame_index+3];
+      score += strike_score(frame_index);
     }
     else if( is_spare(frame_index) ) {
-      score += rolls[frame_index+2];
+      score += spare_score(frame_index);
+    }
+    else {
+      score += frame_score(frame_index);
     }
     frame_index += 2;
   }
