@@ -66,6 +66,15 @@ static void test_spare_after_gutter_ball() {
   assert( bowling_game_score() == 29);
 }
 
+static void test_strike_in_last_frame() {
+  bowling_game_init();
+  roll_many(18, 0);
+  bowling_game_roll(10);
+  bowling_game_roll(7);
+  bowling_game_roll(3);
+  assert( bowling_game_score() == 20);
+}
+
 int main() {
   test_gutter_game();
   test_all_ones();
@@ -74,4 +83,5 @@ int main() {
   test_one_strike();
   test_multiple_strikes();
   test_spare_after_gutter_ball();
+  test_strike_in_last_frame();
 }
