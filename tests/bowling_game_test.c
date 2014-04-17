@@ -75,6 +75,12 @@ static void test_strike_in_last_frame() {
   assert( bowling_game_score() == 20);
 }
 
+static void test_perfect_game() {
+  bowling_game_init();
+  roll_many(12, 10);
+  assert( bowling_game_score() == 300);
+}
+
 int main() {
   test_gutter_game();
   test_all_ones();
@@ -84,4 +90,5 @@ int main() {
   test_multiple_strikes();
   test_spare_after_gutter_ball();
   test_strike_in_last_frame();
+  test_perfect_game();
 }
