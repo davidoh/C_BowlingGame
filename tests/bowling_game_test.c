@@ -49,10 +49,20 @@ static void test_one_strike() {
   assert( bowling_game_score() == 28);
 }
 
+static void test_multiple_strikes() {
+  bowling_game_init();
+  bowling_game_roll(10); //first frame = 23
+  bowling_game_roll(10); //second frame = 13
+  bowling_game_roll(3);
+  roll_many(15, 0);
+  assert( bowling_game_score() == 39);
+}
+
 int main() {
   test_gutter_game();
   test_all_ones();
   test_one_spare();
   test_multiple_spares();
   test_one_strike();
+  test_multiple_strikes();
 }

@@ -28,7 +28,13 @@ static bool is_strike(int frame_index) {
 }
 
 static int strike_score(int frame_index) {
-  return 10 + rolls[frame_index+2] + rolls[frame_index + 3];
+  int next_frame_index = frame_index + 2;
+  if( is_strike(next_frame_index) ) {
+    return 20 + rolls[frame_index+4];
+  }
+  else {
+    return 10 + rolls[frame_index+2] + rolls[frame_index + 3];
+  }
 }
 
 static int spare_score(int frame_index) {
